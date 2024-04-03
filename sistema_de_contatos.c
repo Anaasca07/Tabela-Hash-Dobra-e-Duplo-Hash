@@ -85,3 +85,35 @@ void ler_arquivo(HashTable *hashTable) {
         printf("Erro: falha ao abrir o arquivo.\n");
         exit(1);
     }
+    char linha[200];
+
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        if (count >= HASH_SIZE * 0.25 && count < HASH_SIZE * 0.75) {
+
+            if (contatos == NULL) {
+                printf("Erro: falha na alocação de memória.\n");
+                exit(1);
+            }
+
+            int tamanho = strcspn(linha, "\n");
+            linha[tamanho] = '\0';
+
+            Contact newContact;
+
+            sscanf(linha, "%s %s %s", newContact.name, newContact.email, newContact.phone);
+
+            insertContact(hashTable,&newContact);
+            
+            contatos = realloc(contatos, sizeof(Contact) * (count + 1));
+            if (contatos == NULL) {
+                printf("Erro: falha na alocação de memória.\n");
+                exit(1);
+            }
+            contatos[count] = newContact;
+
+            count++;
+        }
+    }
+
+    fclose(arquivo);
+}
