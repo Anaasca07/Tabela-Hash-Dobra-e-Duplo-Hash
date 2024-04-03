@@ -44,3 +44,21 @@ void insertContact(HashTable *hashTable, Contact *contato) {
         printf("Erro: Falha na alocação de memória\n");
         return;
     }
+ *newContact = *contato;
+    newContact->next = hashTable->table[index];
+    hashTable->table[index] = newContact;
+}
+
+
+Contact *searchContact(HashTable *hashTable, const char *name) {
+    unsigned int index = hash(name);
+    Contact *current = hashTable->table[index];
+
+    while (current != NULL) {
+        if (strcmp(current->name, name) == 0)
+            return current;
+        current = current->next;
+    }
+
+    return NULL;
+}
