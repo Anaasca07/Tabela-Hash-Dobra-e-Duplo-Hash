@@ -123,14 +123,11 @@ int main() {
     int option;
     Contact contato;
 
-    // Inicializa a tabela hash
     for (int i = 0; i < HASH_SIZE; i++)
         hashTable.table[i] = NULL;
 
-    // Ler arquivo
     ler_arquivo(&hashTable);
 
-    // Exemplo de inserção manual de Contacts
     strcpy(contato.name, "Joao");
     strcpy(contato.phone, "123456789");
     insertContact(&hashTable, &contato);
