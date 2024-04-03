@@ -137,3 +137,21 @@ int main() {
     insertContact(&hashTable, &contato);
 
    do {
+      printf("\nMenu:\n");
+        printf("1. Inserir Contact\n");
+        printf("2. Buscar Contact\n");
+        printf("3. Imprimir Contacts\n");
+        printf("4. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &option);
+
+        switch (option) {
+            case 1:
+                printf("Digite o name do Contact: ");
+                scanf("%s", contato.name);
+                printf("Digite o phone do Contact: ");
+                scanf("%s", contato.phone);
+
+                insertContact(&hashTable, &contato);
+
+                break;
