@@ -62,3 +62,26 @@ Contact *searchContact(HashTable *hashTable, const char *name) {
 
     return NULL;
 }
+
+void printContacts(HashTable *hashTable) {
+    printf("Contacts:\n");
+    for (int i = 0; i < HASH_SIZE; i++) {
+        Contact *current = hashTable->table[i];
+        while (current != NULL) {
+            printf("name: %s, phone: %s\n", current->name, current->phone);
+            current = current->next;
+        }
+    }
+}
+
+void ler_arquivo(HashTable *hashTable) {
+    FILE *arquivo;
+    Contact *contatos;
+    int count = 0;
+
+    arquivo = fopen("todosOsContatos.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Erro: falha ao abrir o arquivo.\n");
+        exit(1);
+    }
