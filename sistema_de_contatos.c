@@ -11,3 +11,18 @@ typedef struct Contact {
     char email[30];
     struct Contact *next;
 } Contact;
+
+typedef struct HashTable {
+    Contact *table[HASH_SIZE];
+} HashTable;
+
+
+unsigned int hash(const char *str) {
+    unsigned int hash = 5381;
+    int c;
+
+    while ((c = *str++))
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+
+    return hash % HASH_SIZE;
+}
