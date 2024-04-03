@@ -155,3 +155,25 @@ int main() {
                 insertContact(&hashTable, &contato);
 
                 break;
+            case 2:
+                printf("Digite o name do Contact que deseja buscar: ");
+                scanf("%s", contato.name);
+                Contact *result = searchContact(&hashTable, contato.name);
+                if (result != NULL)
+                    printf("phone de %s: %s\n", contato.name, result->phone);
+                else
+                    printf("Contact não encontrado.\n");
+                break;
+            case 3:
+                printContacts(&hashTable);
+                break;
+            case 4:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida.\n");
+        }
+    } while (option != 4);
+
+    return 0;
+}
